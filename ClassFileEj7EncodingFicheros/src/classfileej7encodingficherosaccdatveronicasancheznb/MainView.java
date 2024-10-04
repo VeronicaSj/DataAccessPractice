@@ -27,6 +27,7 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
+        Test test = new Test();
     }
 
     /**
@@ -70,7 +71,7 @@ public class MainView extends javax.swing.JFrame {
 
         jLabel2.setText("Ruta completa del fichero de entrada:");
 
-        comBoxInputEncoding.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ISO-8859-1", "US-ASCII", "UTF-8 ", "UTF-16" }));
+        comBoxInputEncoding.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ISO-8859-1", "US-ASCII", "UTF-8", "UTF-16" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("FICHERO DE SALIDA");
@@ -206,34 +207,69 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * funcion que se ejecuta al pulsar el boton <code>btnSelectInputFile</code>. 
+     * Muestra un Jfilechooser de archivos y muestra en un textField la 
+     * seleccion del usuario
+     * @param evt 
+     */
     private void btnSelectInputFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInputFileActionPerformed
+        //mostramos filechooser de archivos
         originFile=viewE.chooseFileLocation(JFileChooser.FILES_ONLY, 
                 "Introduzca el archivo de origen");
-        if (originFile != null) {
+        
+        if (originFile != null) {//si se ha seleccionado algo
+            //lo mostramos
             txtInputFilePath.setText(originFile.getAbsolutePath());
-        }else{
+        }else{//si se ha seleccionado algun boton de exit
+            //borramos seleccion
+            originFile=null;
             txtInputFilePath.setText("No seleccionado");
         }
     }//GEN-LAST:event_btnSelectInputFileActionPerformed
 
+    /**
+     * funcion que se ejecuta al pulsar el boton <code>btnSelectOutputDir/code>.
+     * Muestra un JFilechooser de directorios y muestra la 
+     * seleccion del usuario en el textField <code>txtOutputFilePath</code>
+     * @param evt 
+     */
     private void btnSelectOutputDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectOutputDirActionPerformed
+        //mostramos filechooser de directorios
         destinyDir = viewE.chooseFileLocation(JFileChooser.DIRECTORIES_ONLY, 
                 "Introduzca el directorio de destino");
-        if (destinyDir != null) {
+        if (destinyDir != null) {//si se ha seleccionado algo
+            //lo mostramos
             txtOutputFilePath.setText(destinyDir.getAbsolutePath());
-        }else{
+        }else{//si se ha seleccionado algun boton de exit
+            //borramos seleccion
+            destinyDir=null;
             txtOutputFilePath.setText("No seleccionado");
         }
     }//GEN-LAST:event_btnSelectOutputDirActionPerformed
 
+    /**
+     * funcion que se ejecuta al introducir texto en el textField. Edita el 
+     * textField <code>destinyFileName</code> de la ruta de destino
+     * txtOutputFilePath. 
+     * @param evt 
+     */
     private void txtOutputFileNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOutputFileNameKeyReleased
+        //si el directorio de salida se ha seleccionado y es un directorio
         if (destinyDir!=null && destinyDir.isDirectory()) {
+            //vamos actualizando el filePath de salida
             txtOutputFilePath.setText(destinyDir.getAbsolutePath()
                     +"\\"+txtOutputFileName.getText()+".txt");
             destinyFileName=txtOutputFileName.getText()+".txt";
         }
     }//GEN-LAST:event_txtOutputFileNameKeyReleased
 
+    /**
+     * funcion que se ejecuta al pulsar el boton <code>btnAcept</code>. Coìa un 
+     * fichero de entrada con el encoding indicado en un nuevo fichero de 
+     * salida con el encoding indicado
+     * @param evt 
+     */
     private void btnAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptActionPerformed
         //recogemos los datos del usuario que faltan por recoger, los encodings
         originCharset=comBoxInputEncoding.getSelectedItem().toString();
@@ -267,6 +303,10 @@ public class MainView extends javax.swing.JFrame {
    
     }//GEN-LAST:event_btnAceptActionPerformed
 
+    /**
+     * Funcion auxiliar que valida los datos introducidos por el usuario.
+     * @return 
+     */
     private boolean validateUserData(){
         boolean res=false;
         

@@ -20,10 +20,9 @@ import java.util.logging.Logger;
  * @author veron
  */
 public class FileManager {
-    
-    
     /**
-     * Funcion auxiliar que escribe un texto en un archivo
+     * Funcion auxiliar que escribe un texto en un archivo teniendo en cuenta 
+     * el encoding indicado
      * @param file archivo que será escrito
      * @param finalStr texto para escribir
      * @param charset encoding de escritura del texto
@@ -39,21 +38,35 @@ public class FileManager {
             fos = new FileOutputStream(file);
             osw=new OutputStreamWriter(fos, Charset.forName(charset));
             try {
+                //escribimos eltexto indicado
                 osw.append(finalStr);
+                //si todo ha salido bien devolvemos true
                 res=true;
             } catch (IOException ex) {
                 res=false;
             }
         } catch (FileNotFoundException ex) {
             res=false;
+        }finally{//liberamos recursos
+            if (osw!=null) {
+                try {
+                    osw.close();
+                } catch (IOException ex) {}
+            }
+            if (fos!=null) {
+                try {
+                    fos.close();
+                } catch (IOException ex) {}
+            }
         }
         
-        
+        //si todo ha salido bien devolvemos true
         return res;
     }
     
     /**
-     * Funcion que lee y devuelve el contenido de un archivo
+     * Funcion que lee y devuelve el contenido de un archivo teniendo en cuenta 
+     * el encoding indicado
      * @param file archivo que queremos leer
      * @param charset encoding de lectura del texto
      * @return texto contenido en el archivo o null en caso de error
@@ -73,15 +86,29 @@ public class FileManager {
                 res="";//si la primra lectura no da excepcion, inicializamos
                 while (intChar!=-1) {
                     res=res+ (char) intChar;
+                    //System.out.println((char) intChar);
+                    intChar= isr.read();
                 }
-                //si todo ha ido bien devolvemos el texto
+                
             } catch (IOException ex) {
                 res=null;
             }
         } catch (FileNotFoundException ex) {
             res=null;
+        }finally{//liberamos recursos
+            if (fis!=null) {
+                try {
+                    fis.close();
+                } catch (IOException ex) {}
+            }
+            if (isr!=null) {
+                try {
+                    isr.close();
+                } catch (IOException ex) {}
+            }
         }
             
+        //si todo ha ido bien devolvemos el texto
         return res;
     }
     
