@@ -10,6 +10,7 @@ import Model.Alumn;
 import Model.AlumnArray;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,7 +53,7 @@ public class MainView extends javax.swing.JFrame {
         
         //tabla
         tModel = (DefaultTableModel) table.getModel();
-        ArrayList auxlist = mCont.getAlumnList();
+        AlumnArray auxlist = mCont.getAlumnList();
         
         if (auxlist==null) {
             VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
@@ -60,9 +61,67 @@ public class MainView extends javax.swing.JFrame {
            System.exit(0);
         }
         
-        loadTableInfo(mCont.getAlumnList());
+        loadTableInfo(auxlist);
         
+        loadTableHeader();
+        loadComBox(jComboBox1);
+        loadComBox(jComboBox2);
     }
+    
+    private void loadTableHeader(){
+        //editamos los titulos de la tabla
+        table.getColumn(table.getColumnName(0))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_ENROLMENT_ID));
+        table.updateUI();
+        table.getColumn(table.getColumnName(1))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_NAME));
+        table.updateUI();
+        table.getColumn(table.getColumnName(2))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_MARK_1));
+        table.updateUI();
+        table.getColumn(table.getColumnName(3))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_MARK_2));
+        table.updateUI();
+        table.getColumn(table.getColumnName(4))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_MARK_FINAL));
+        table.updateUI();
+        table.getColumn(table.getColumnName(5))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_MARK_EXTRA));
+        table.updateUI();
+        table.getColumn(table.getColumnName(6))
+                .setHeaderValue(
+                    LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                        LanguageManagerConstants.ID_MAIN_FRAME_TABLE_COLUMN_TITLE_BIRTH));
+        table.updateUI();
+    }
+    
+    private void loadComBox(JComboBox<String> cbox){
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_ENROLMENT_ID));
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_NAME));
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_TITLE_MARK_1));
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_TITLE_MARK_2));
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_TITLE_MARK_FINAL));
+        cbox.addItem(LANG_MAN.getMsg(LanguageManagerConstants.MAIN_FRAME, 
+                LanguageManagerConstants.ID_MAIN_FRAME_COM_BOX_TITLE_MARK_EXTRA));
+    }
+    
     
     /**
      * funcion que acomoda una lista de alumnos en una tabla
@@ -84,9 +143,12 @@ public class MainView extends javax.swing.JFrame {
      * @param alu registro que queremos añadir
      */
     private void myAddRow(Alumn alu){
+        Date dateAux= alu.getbirthD();
+        String dateStr= (dateAux.getMonth()+1)+"/"+dateAux.getDate()+"/"
+                +(dateAux.getYear()+1900);
         tModel.addRow(new Object[]{alu.getNMatricula(), alu.getNombre(),
-                alu.getNot1Ev(), alu.getNota2Ev(), alu.getNotaFinal(), 
-                alu.getNotaExtra(), alu.getbirthD()});
+                alu.getNot1Ev(), alu.getNot2Ev(), alu.getNotaFinal(), 
+                alu.getNotaExtra(), dateStr});
     }
     
     /**
@@ -94,12 +156,10 @@ public class MainView extends javax.swing.JFrame {
      */
     private void cleanTable(){
         //si la tabla no tien contenido no hay que limpiar
-        if (table.getRowCount()>0) { 
             //la recorremos y la limpiamos
-            for (int i = 0; i < tModel.getRowCount(); i++) {
+            while(table.getRowCount()>0){
                 tModel.removeRow(0);
             }
-        }
     }
     
     /**
@@ -121,9 +181,8 @@ public class MainView extends javax.swing.JFrame {
             float nota2 = (float) tModel.getValueAt(SelectedRow, 3);
             float notaFinal = (float) tModel.getValueAt(SelectedRow, 4);
             float notaExtra = (float) tModel.getValueAt(SelectedRow, 5);
-            String birthDateStr = (String) tModel.getValueAt(SelectedRow, 6);
+            Date birthDate = new Date(Date.parse((String)tModel.getValueAt(SelectedRow, 6)));
             
-            Date birthDate = new Date(birthDateStr);
 
             res = new Alumn(matricula,nom,nota1,nota2,notaFinal,notaExtra,birthDate);
         }
@@ -175,10 +234,11 @@ public class MainView extends javax.swing.JFrame {
             tFieldNMatricula.setText(alumn.getNMatricula()+"");
             tFieldNom.setText(alumn.getNombre());
             tFieldNota1.setText(alumn.getNot1Ev()+"");
-            tFieldNota2.setText(alumn.getNota2Ev()+"");
+            tFieldNota2.setText(alumn.getNot2Ev()+"");
             tFieldNotaF.setText(alumn.getNotaFinal()+"");
-            tFieldNotaE.setText(alumn.getNotaExtra()+"");   
-            tFieldDate.setText(alumn.getbirthD().toString());
+            tFieldNotaE.setText(alumn.getNotaExtra()+""); 
+            Date date = alumn.getbirthD();
+            tFieldDate.setText((date.getMonth()+1)+"/"+date.getDate()+"/"+(date.getYear()+1900));
         }
     }
     
@@ -200,6 +260,8 @@ public class MainView extends javax.swing.JFrame {
      * @return alumno introducido a través de los textFields
      */
     public Alumn getUserAlumn(){
+        /*TODO: EXPLICAR AL USUARIO QUE ESTÁ INTRODUCIENDO MAL*/
+        
         Alumn alu = null;
         int nMatricula = 0;
         String nombre = "";
@@ -207,7 +269,8 @@ public class MainView extends javax.swing.JFrame {
         float nota2Ev = 0;
         float notaFinal = 0;
         float notaExtra = 0;
-        String birthDStr="";
+        String birthDStr=null;
+        Date birthD=null;
         
         /*aquí hay un conjunto de conmprobaciones escalonadas porque si no 
         pasamos alguno de los escalones no es necesario seguir con el siguiente*/
@@ -217,14 +280,14 @@ public class MainView extends javax.swing.JFrame {
             birthDStr=tFieldDate.getText();
             //comp2: hay algún nombre escrito y alguna fecha
             if(nombre.length()>0){
-                if (birthDStr.length()>0) {
+                if (birthDStr.length()>10) {
                     try{//comprobacion3: las notas tienen que ser numeros decimales
                         not1Ev = Float.parseFloat(tFieldNota1.getText());
                         nota2Ev = Float.parseFloat(tFieldNota2.getText());
                         notaFinal = Float.parseFloat(tFieldNotaF.getText());
                         notaExtra = Float.parseFloat(tFieldNotaE.getText());
-
-
+                        birthD = new Date(birthDStr);
+                        System.out.println(birthD.toString());
                         /*si alguno de estas comprobaciones falla, avisamos al 
                         usuario y nos salimos del recorrido*/
                     }catch(Exception e){
@@ -232,6 +295,10 @@ public class MainView extends javax.swing.JFrame {
                     LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
                         return null;
                     }
+                }else{
+                    VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
+                        LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
+                    return null;
                 }
             }else{
                 VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
@@ -244,12 +311,10 @@ public class MainView extends javax.swing.JFrame {
             return null;
         }
         
-        //TODO
-        Date birthD = new Date(birthDStr);
-        
         //si todo va bien devolvemod el alumno formado
         alu = new Alumn(nMatricula, nombre, not1Ev, nota2Ev, notaFinal, 
                 notaExtra, birthD);
+        System.out.println(alu.toString()+ birthD.toString());
         return alu;
     }
     
@@ -260,12 +325,14 @@ public class MainView extends javax.swing.JFrame {
     private void sortTable(){
         if (isFilterOn) {//opcion 1: fltro activado
             AlumnArray filteredArray = mCont.getfilteredList();
-            filteredArray.sort(jComboBox1.getSelectedIndex(), isOtherOrderOn);
+            filteredArray = filteredArray.sort(jComboBox1.getSelectedIndex(), isOtherOrderOn);
             loadTableInfo(filteredArray);
         }else{//opcion 2: fltro desactivado
             AlumnArray array = mCont.getAlumnList();
-            array.sort(jComboBox1.getSelectedIndex(), isOtherOrderOn);
+            array = array.sort(jComboBox1.getSelectedIndex(), isOtherOrderOn);
+            System.out.println(array.size());
             loadTableInfo(array);
+            
         }
     }
 
@@ -308,9 +375,13 @@ public class MainView extends javax.swing.JFrame {
         tFieldDate = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Matricula", "Nombre", "Nota 1º Ev", "Nota 2º Ev", "Nota Final", "Nota Extra" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -340,8 +411,6 @@ public class MainView extends javax.swing.JFrame {
         jLabel2.setText(LANG_MAN.getMsg(
             LanguageManagerConstants.MAIN_FRAME,
             LanguageManagerConstants.ID_MAIN_FRAME_LABEL_NAME));
-
-    jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Matricula", "Nombre", "Nota 1º Ev", "Nota 2º Ev", "Nota Final", "Nota Extra" }));
 
     jLabel3.setText(LANG_MAN.getMsg(
         LanguageManagerConstants.MAIN_FRAME,
@@ -421,7 +490,7 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
 
         },
         new String [] {
-            "Nº Matricula", "Nombre", "Nota 1º Ev", "Nota 2º Ev", "Nota Final", "Nota Extra", "Fecha Nac"
+            "enrrolment", "name", " 1º Ev", "2º Ev", "Final", "Extra", "date"
         }
     ) {
         Class[] types = new Class [] {
@@ -481,18 +550,34 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnFilter)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnQuitFilter))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tFieldFilter))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 332, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jToggleButton1)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jToggleButton1)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,30 +599,16 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tFieldDate)))
-                    .addGap(45, 45, 45))
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnFilter)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnQuitFilter))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tFieldFilter))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 332, Short.MAX_VALUE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(tFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(33, 33, 33))))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(tFieldNMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -553,9 +624,7 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tFieldNota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(8, 8, 8)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -634,7 +703,7 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
                     }
                     break;
                     case 3://nota2
-                    if ((alu.getNota2Ev()+"").contains(filText)) {
+                    if ((alu.getNot2Ev()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
@@ -709,6 +778,18 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
     private void tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMousePressed
         fillAlumnTFields(getSelectedAlumn());//rellenamos los textFields
     }//GEN-LAST:event_tableMousePressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (mCont.saveInfo()) {
+            System.exit(0);
+        }else{
+            if (VIEW_E.askUserConfirmation(
+                    LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
+                    LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ASK_ERROR_SAVE))) {
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

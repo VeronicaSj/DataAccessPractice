@@ -5,15 +5,19 @@
 package IO;
 
 import Model.AlumnArray;
+import java.io.File;
 
 /**
  *
  * @author veron
  */
 public class Test {
+    private static final File FILE= new File("alumn.txt");
 
     public Test() {
-        FileManager fm= new FileManager();
+        //System.out.println(FILE.length());
+    
+        /*FileManager fm= new FileManager();
         AlumnArray aa= fm.readFile();
         if (aa!=null) {
             for (int i = 0; i < aa.size(); i++) {
@@ -25,7 +29,7 @@ public class Test {
             }
         }else{
             System.out.println("TEST: array devuelto nulo");    
-        }
+        }*/
         
     }
     

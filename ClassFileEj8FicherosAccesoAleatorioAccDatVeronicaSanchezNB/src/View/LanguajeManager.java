@@ -157,6 +157,8 @@ public class LanguajeManager {
             res = "No puedes editar la matricula";
         }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_READ_ERROR == id) {
             res = "Error durante la carga de datos";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ASK_ERROR_SAVE== id) {
+            res = "Error al guardar los datos¿Desea salir igualmente?";
         }
         
         return res;
@@ -265,10 +267,22 @@ public class LanguajeManager {
     private String getEnglishNotificationMsg(int id){
         String res = "Msg not found";
         
-        if(LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR == id){
-            res = "";
-        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR == id) {
-            res = "";
+        if(LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_TOO_MUCH_SELECTED == id){
+            res = "There are more than one selected row at the table";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOTHING_SELECTED == id) {
+            res = "You must select one row at the table";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT == id) {
+            res = "The inserted alumn data are not valid";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ASK_FOR_UPDATE == id) {
+            res = "Alumn already exists. Do you want to update?";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ASK_FOR_DELETE == id) {
+            res = "Are you sure you want to delete the selected alumn?";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_UPDATE_ID == id) {
+            res = "You cant update the enrolment id";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_READ_ERROR == id) {
+            res = "Error while loading data";
+        }else if (LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ASK_ERROR_SAVE== id) {
+            res = "Error  while saving data. Do you want to exit anyway?";
         }
         
         return res;

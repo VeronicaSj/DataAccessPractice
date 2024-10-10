@@ -31,7 +31,7 @@ public class Alumn {
         this.nota2Ev = nota2Ev;
         this.notaFinal = notaFinal;
         this.notaExtra = notaExtra;
-        this.birthD = birthD;
+        this.birthD= birthD;
     }
  
     public void setNMatricula(int nMatricula){this.enrollment=nMatricula;}
@@ -41,11 +41,12 @@ public class Alumn {
     public void setNotaFinal(float notaFinal){this.notaFinal=notaFinal;}
     public void setNotaExtra(float notaExtra){this.notaExtra=notaExtra;}
     public void setbirthD(Date birthD){this.birthD=birthD;}
+    
 
     public int getNMatricula(){ return this.enrollment;}
     public String getNombre(){ return this.nombre;}
     public float getNot1Ev(){ return this.not1Ev;}
-    public float getNota2Ev(){ return this.nota2Ev;}
+    public float getNot2Ev(){ return this.nota2Ev;}
     public float getNotaFinal(){ return this.notaFinal;}
     public float getNotaExtra(){ return this.notaExtra;}
     public Date getbirthD(){return this.birthD;}

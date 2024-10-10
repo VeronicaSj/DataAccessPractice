@@ -198,9 +198,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNota2Ev() < arg1.getNota2Ev()){
+                if(arg0.getNot2Ev() < arg1.getNot2Ev()){
                     res = 1;
-                }else if(arg0.getNota2Ev() > arg1.getNota2Ev()){
+                }else if(arg0.getNot2Ev() > arg1.getNot2Ev()){
                     res = -1;
                 }
                 return res;
@@ -338,9 +338,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNota2Ev() < arg1.getNota2Ev()){
+                if(arg0.getNot2Ev() < arg1.getNot2Ev()){
                     res = -1;
-                }else if(arg0.getNota2Ev() > arg1.getNota2Ev()){
+                }else if(arg0.getNot2Ev() > arg1.getNot2Ev()){
                     res = 1;
                 }
                 return res;

@@ -27,7 +27,7 @@ public class LanguageManagerConstants {
     public static final int ID_NOTIFICATIONS_MSG_ASK_FOR_DELETE = getId();
     public static final int ID_NOTIFICATIONS_MSG_ERROR_UPDATE_ID = getId();
     public static final int ID_NOTIFICATIONS_MSG_ERROR_READ_ERROR = getId();
-    
+    public static final int ID_NOTIFICATIONS_MSG_ASK_ERROR_SAVE = getId();
     
     //VISUAL COMPONENT TEXT ID CONSTANT
     public static final int ID_MAIN_FRAME_TITLE = getId();
