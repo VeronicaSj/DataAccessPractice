@@ -9,28 +9,34 @@ import Model.Alumn;
 import Model.AlumnArray;
 
 /**
- *
+ * Class that controls the info exchange
  * @author veron
  */
 public class MainController {
-    private static AlumnArray filteredList = new AlumnArray();//lista que nos ayuda a filtrar los alumnos
-    private static AlumnArray alumnList = new AlumnArray();//lista que contiene los alumnos que vamos a gestionar
-    public static FileManager fManag= new FileManager();//Clase que nos hace las peticiones al fichero
+    //We will take all the alumns from the file at the beginning
+    private static AlumnArray alumnList = new AlumnArray();
+    private static AlumnArray filteredList = new AlumnArray();//will save the filtered alumn list
+    public static FileManager fManag= new FileManager();//responsable of every file change
 
     /**
-     * Constructor que inicializa la lista de alumnos
+     * Constructor. It tries to load the <code>alumnList</code>
      */
     public MainController() {
         loadInfo();
     }
     
     /**
-     * funcion para guardar la informacion en el fihero
+     * Funtion that saves the full <code>alumnList</code>
+     * @return true if the performance was succesfull; false in other case 
      */
     public boolean saveInfo(){
         return fManag.writeFile(alumnList);
     }
     
+    /**
+     * Funtion that tries to load the <code>alumnList</code>
+     * @return true if the performance was succesfull; false in other case 
+     */
     public boolean loadInfo(){
         boolean res= false;
         alumnList =fManag.readFile();
@@ -41,48 +47,48 @@ public class MainController {
     }
     
     /**
-     * funcion que retorna la lista sobre la que haremos las seleciones
-     * @return devuelve un ArrayList con la ultima seleccion de alumnos que hicimos
+     * <code>filteredList</code> getter
+     * @return <code>filteredList</code> value from this class 
      */
     public AlumnArray getfilteredList(){
         return filteredList;
     }
     
     /**
-     * funcion que retorna la lista de alumnos que estamos gestionando
-     * @return  devuelve la lista de alumnos que estamos gestionando
+     * <code>alumnList</code> getter
+     * @return <code>alumnList</code> value from this class 
      */
     public AlumnArray getAlumnList(){
         return alumnList;
     }
 
     /**
-     * Setter para la lista de alumnos filtrados
-     * @param filteredList un AlumnArray
+     * <code>filteredList</code> setter
+     * @param filteredList value
      */
     public void setFilteredList(AlumnArray filteredList) {
         this.filteredList = filteredList;
     }
 
     /**
-     * setter para la lista de alumnos que estamos gestionando
-     * @param alumnList un AlumnArray
+     * <code>alumnList</code> setter
+     * @param alumnList value
      */
     public void setAlumnList(AlumnArray alumnList) {
         this.alumnList = alumnList;
     }
     
     /**
-     * funcion para borrar un alumno de la lista de alumnos que estamos gestionando
-     * @param alu alumno que queremos modificar
+     * Funtion that remove an alumn from the <code>alumnList</code>
+     * @param alu we want to remove
      */
     public void removeAlumn(Alumn alu){
         alumnList.remove(alu);
     }
     /**
-     * funcion para modificar un alumno de la lista de alumnos que estamos gestionando
-     * @param oldAlu alumno que queremos cambiar
-     * @param newAlu alumno por el que vamos a remplazar
+     * Funtion that updates an alumn from the <code>alumnList</code>
+     * @param oldAlu alum that will be deleted
+     * @param newAlu alum that will replace the old alumn
      */
     public void updateAlumn(Alumn oldAlu, Alumn newAlu){
         alumnList.remove(oldAlu);
@@ -90,8 +96,8 @@ public class MainController {
     }
     
     /**
-     * funcion para añadir un alumno a la lista de alumnos que estamos gestionando
-     * @param alu alumno que queremos añadir
+     * Funtion that adds an alumn to the <code>alumnList</code>
+     * @param alu alum that will be added
      */
     public void addAlumn(Alumn alu){
         alumnList.add(alu);

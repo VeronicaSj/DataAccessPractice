@@ -12,65 +12,83 @@ import java.util.Date;
  */
 public class Alumn {
     private int enrollment;//clave primaria e indice
-    private String nombre;
-    private float not1Ev, nota2Ev, notaFinal, notaExtra;
+    private String name;
+    private float mark1Ev, mark2Ev, markFinal, markExtra;
     private Date birthD;
     
     public Alumn(){
         enrollment = Integer.MIN_VALUE;
-        nombre = null;
-        not1Ev = nota2Ev = notaFinal = notaExtra = 0;
+        name = null;
+        mark1Ev = mark2Ev = markFinal = markExtra = 0;
         birthD = null;
     }
     
-    public Alumn (int nMatricula, String nombre, float not1Ev, float nota2Ev, 
-        float notaFinal, float notaExtra, Date birthD){
-        this.enrollment = nMatricula;
-        this.nombre = nombre;
-        this.not1Ev = not1Ev;
-        this.nota2Ev = nota2Ev;
-        this.notaFinal = notaFinal;
-        this.notaExtra = notaExtra;
+    public Alumn (int enrollment, String name, float mark1Ev, float mark2Ev, 
+        float markFinal, float markExtra, Date birthD){
+        this.enrollment = enrollment;
+        this.name = name;
+        this.mark1Ev = mark1Ev;
+        this.mark2Ev = mark2Ev;
+        this.markFinal = markFinal;
+        this.markExtra = markExtra;
         this.birthD= birthD;
     }
- 
-    public void setNMatricula(int nMatricula){this.enrollment=nMatricula;}
-    public void setNombre(String nombre){this.nombre=nombre;}
-    public void setNot1Ev(float not1Ev){this.not1Ev=not1Ev;}
-    public void setNota2Ev(float nota2Ev){this.nota2Ev=nota2Ev;}
-    public void setNotaFinal(float notaFinal){this.notaFinal=notaFinal;}
-    public void setNotaExtra(float notaExtra){this.notaExtra=notaExtra;}
-    public void setbirthD(Date birthD){this.birthD=birthD;}
-    
 
-    public int getNMatricula(){ return this.enrollment;}
-    public String getNombre(){ return this.nombre;}
-    public float getNot1Ev(){ return this.not1Ev;}
-    public float getNot2Ev(){ return this.nota2Ev;}
-    public float getNotaFinal(){ return this.notaFinal;}
-    public float getNotaExtra(){ return this.notaExtra;}
-    public Date getbirthD(){return this.birthD;}
-    
-    @Override
-    public String toString() {
-        return "Alumn{" + "nMatricula=" + enrollment + ", nombre=" + nombre+'}';
+    public int getEnrollment() {
+        return enrollment;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Alumn other = (Alumn) obj;
-        if (this.enrollment != other.enrollment) {
-            return false;
-        }
-        return true;
+    public void setEnrollment(int enrollment) {
+        this.enrollment = enrollment;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getMark1Ev() {
+        return mark1Ev;
+    }
+
+    public void setMark1Ev(float mark1Ev) {
+        this.mark1Ev = mark1Ev;
+    }
+
+    public float getMark2Ev() {
+        return mark2Ev;
+    }
+
+    public void setMark2Ev(float mark2Ev) {
+        this.mark2Ev = mark2Ev;
+    }
+
+    public float getMarkFinal() {
+        return markFinal;
+    }
+
+    public void setMarkFinal(float markFinal) {
+        this.markFinal = markFinal;
+    }
+
+    public float getMarkExtra() {
+        return markExtra;
+    }
+
+    public void setMarkExtra(float markExtra) {
+        this.markExtra = markExtra;
+    }
+
+    public Date getBirthD() {
+        return birthD;
+    }
+
+    public void setBirthD(Date birthD) {
+        this.birthD = birthD;
+    }
+    
+    
 }

@@ -115,9 +115,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNMatricula() < arg1.getNMatricula()){
+                if(arg0.getEnrollment()< arg1.getEnrollment()){
                     res = 1;
-                }else if(arg0.getNMatricula() > arg1.getNMatricula()){
+                }else if(arg0.getEnrollment()> arg1.getEnrollment()){
                     res = -1;
                 }
                 return res;
@@ -134,15 +134,15 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                int length1 =  arg1.getNombre().length();
-                int length0 =  arg0.getNombre().length();
+                int length1 =  arg1.getName().length();
+                int length0 =  arg0.getName().length();
                 boolean needSecondCheck = true;
                 
                 //recorremos las palabras letra a letra hasta que encontramos 
                 //una que no coincida
                 for(int i = 0 ; i < length1 && i < length0; i++){
-                    char c0 = arg0.getNombre().charAt(i);
-                    char c1 = arg1.getNombre().charAt(i);
+                    char c0 = arg0.getName().charAt(i);
+                    char c1 = arg1.getName().charAt(i);
                     if(c0!=c1){
                         if(c0>c1){
                            res = -1; 
@@ -179,9 +179,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNot1Ev() < arg1.getNot1Ev()){
+                if(arg0.getMark1Ev()< arg1.getMark1Ev()){
                     res = 1;
-                }else if(arg0.getNot1Ev() > arg1.getNot1Ev()){
+                }else if(arg0.getMark1Ev()> arg1.getMark1Ev()){
                     res = -1;
                 }
                 return res;
@@ -198,9 +198,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNot2Ev() < arg1.getNot2Ev()){
+                if(arg0.getMark2Ev()< arg1.getMark2Ev()){
                     res = 1;
-                }else if(arg0.getNot2Ev() > arg1.getNot2Ev()){
+                }else if(arg0.getMark2Ev()> arg1.getMark2Ev()){
                     res = -1;
                 }
                 return res;
@@ -217,9 +217,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNotaFinal()< arg1.getNotaFinal()){
+                if(arg0.getMarkFinal()< arg1.getMarkFinal()){
                     res = 1;
-                }else if(arg0.getNotaFinal() > arg1.getNotaFinal()){
+                }else if(arg0.getMarkFinal()> arg1.getMarkFinal()){
                     res = -1;
                 }
                 return res;
@@ -236,9 +236,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNotaExtra()< arg1.getNotaExtra()){
+                if(arg0.getMarkExtra()< arg1.getMarkExtra()){
                     res = 1;
-                }else if(arg0.getNotaExtra() > arg1.getNotaExtra()){
+                }else if(arg0.getMarkExtra() > arg1.getMarkExtra()){
                     res = -1;
                 }
                 return res;
@@ -255,9 +255,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNMatricula() < arg1.getNMatricula()){
+                if(arg0.getEnrollment()< arg1.getEnrollment()){
                     res = -1;
-                }else if(arg0.getNMatricula() > arg1.getNMatricula()){
+                }else if(arg0.getEnrollment() > arg1.getEnrollment()){
                     res = 1;
                 }
                 return res;
@@ -274,15 +274,15 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                int length1 =  arg1.getNombre().length();
-                int length0 =  arg0.getNombre().length();
+                int length1 =  arg1.getName().length();
+                int length0 =  arg0.getName().length();
                 boolean needSecondCheck = true;
                 
                 //recorremos las palabras letra a letra hasta que encontramos 
                 //una que no coincida
                 for(int i = 0 ; i < length1 && i < length0; i++){
-                    char c0 = arg0.getNombre().charAt(i);
-                    char c1 = arg1.getNombre().charAt(i);
+                    char c0 = arg0.getName().charAt(i);
+                    char c1 = arg1.getName().charAt(i);
                     if(c0!=c1){
                         if(c0>c1){
                            res = 1; 
@@ -319,9 +319,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNot1Ev() < arg1.getNot1Ev()){
+                if(arg0.getMark1Ev()< arg1.getMark1Ev()){
                     res = -1;
-                }else if(arg0.getNot1Ev() > arg1.getNot1Ev()){
+                }else if(arg0.getMark1Ev() > arg1.getMark1Ev()){
                     res = 1;
                 }
                 return res;
@@ -338,9 +338,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNot2Ev() < arg1.getNot2Ev()){
+                if(arg0.getMark2Ev()< arg1.getMark2Ev()){
                     res = -1;
-                }else if(arg0.getNot2Ev() > arg1.getNot2Ev()){
+                }else if(arg0.getMark2Ev() > arg1.getMark2Ev()){
                     res = 1;
                 }
                 return res;
@@ -357,9 +357,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNotaFinal() < arg1.getNotaFinal()){
+                if(arg0.getMarkFinal()< arg1.getMarkFinal()){
                     res = -1;
-                }else if(arg0.getNotaFinal() > arg1.getNotaFinal()){
+                }else if(arg0.getMarkFinal() > arg1.getMarkFinal()){
                     res = 1;
                 }
                 return res;
@@ -376,9 +376,9 @@ public class Sorter {
             @Override
             public int compare(Alumn arg0, Alumn arg1) {
                 int res = 0;
-                if(arg0.getNotaExtra() < arg1.getNotaExtra()){
+                if(arg0.getMarkExtra()< arg1.getMarkExtra()){
                     res = -1;
-                }else if(arg0.getNotaExtra() > arg1.getNotaExtra()){
+                }else if(arg0.getMarkExtra() > arg1.getMarkExtra()){
                     res = 1;
                 }
                 return res;

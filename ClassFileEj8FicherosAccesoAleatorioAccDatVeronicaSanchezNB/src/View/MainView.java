@@ -19,6 +19,19 @@ import javax.swing.table.DefaultTableModel;
  * @author veron
  */
 public class MainView extends javax.swing.JFrame {
+    /*
+    TODO: 
+        TODAS LAs CLASES A PARTIR DE ALUMNARRAY: 
+            traducir los comentarios 
+            corregir errores de nombres de variables
+        
+        CLASE MainView:
+            Comentar lo que falta
+            traducir comentarios
+            corregir errores de nombres de variables
+            getUserAlumn()-> EXPLICAR AL USUARIO QUE ESTÁ INTRODUCIENDO MAL
+        
+    */
     
     //atribujos de lenguaje
     private static final LanguajeManager LANG_MAN= new LanguajeManager();
@@ -143,12 +156,12 @@ public class MainView extends javax.swing.JFrame {
      * @param alu registro que queremos añadir
      */
     private void myAddRow(Alumn alu){
-        Date dateAux= alu.getbirthD();
+        Date dateAux= alu.getBirthD();
         String dateStr= (dateAux.getMonth()+1)+"/"+dateAux.getDate()+"/"
                 +(dateAux.getYear()+1900);
-        tModel.addRow(new Object[]{alu.getNMatricula(), alu.getNombre(),
-                alu.getNot1Ev(), alu.getNot2Ev(), alu.getNotaFinal(), 
-                alu.getNotaExtra(), dateStr});
+        tModel.addRow(new Object[]{alu.getEnrollment(), alu.getName(),
+                alu.getMark1Ev(), alu.getMark2Ev(), alu.getMarkFinal(), 
+                alu.getMarkExtra(), dateStr});
     }
     
     /**
@@ -231,13 +244,13 @@ public class MainView extends javax.swing.JFrame {
      */
     private void fillAlumnTFields(Alumn alumn){
         if (alumn != null) { //si el alumno es null, no modemos sacarle info
-            tFieldNMatricula.setText(alumn.getNMatricula()+"");
-            tFieldNom.setText(alumn.getNombre());
-            tFieldNota1.setText(alumn.getNot1Ev()+"");
-            tFieldNota2.setText(alumn.getNot2Ev()+"");
-            tFieldNotaF.setText(alumn.getNotaFinal()+"");
-            tFieldNotaE.setText(alumn.getNotaExtra()+""); 
-            Date date = alumn.getbirthD();
+            tFieldNMatricula.setText(alumn.getEnrollment()+"");
+            tFieldNom.setText(alumn.getName());
+            tFieldNota1.setText(alumn.getMark1Ev()+"");
+            tFieldNota2.setText(alumn.getMark2Ev()+"");
+            tFieldNotaF.setText(alumn.getMarkFinal()+"");
+            tFieldNotaE.setText(alumn.getMarkExtra()+""); 
+            Date date = alumn.getBirthD();
             tFieldDate.setText((date.getMonth()+1)+"/"+date.getDate()+"/"+(date.getYear()+1900));
         }
     }
@@ -276,23 +289,29 @@ public class MainView extends javax.swing.JFrame {
         pasamos alguno de los escalones no es necesario seguir con el siguiente*/
         try{//comprobacion1: la matricula es un numero
             nMatricula = Integer.parseInt(tFieldNMatricula.getText());
-            nombre = tFieldNom.getText();
-            birthDStr=tFieldDate.getText();
-            //comp2: hay algún nombre escrito y alguna fecha
-            if(nombre.length()>0){
-                if (birthDStr.length()>10) {
-                    try{//comprobacion3: las notas tienen que ser numeros decimales
-                        not1Ev = Float.parseFloat(tFieldNota1.getText());
-                        nota2Ev = Float.parseFloat(tFieldNota2.getText());
-                        notaFinal = Float.parseFloat(tFieldNotaF.getText());
-                        notaExtra = Float.parseFloat(tFieldNotaE.getText());
-                        birthD = new Date(birthDStr);
-                        System.out.println(birthD.toString());
-                        /*si alguno de estas comprobaciones falla, avisamos al 
-                        usuario y nos salimos del recorrido*/
-                    }catch(Exception e){
+            if (nMatricula>0) {
+                nombre = tFieldNom.getText();
+                birthDStr=tFieldDate.getText();
+                //comp2: hay algún nombre escrito y alguna fecha
+                if(nombre.length()>0){
+                    if (birthDStr.length()>10) {
+                        try{//comprobacion3: las notas tienen que ser numeros decimales
+                            not1Ev = Float.parseFloat(tFieldNota1.getText());
+                            nota2Ev = Float.parseFloat(tFieldNota2.getText());
+                            notaFinal = Float.parseFloat(tFieldNotaF.getText());
+                            notaExtra = Float.parseFloat(tFieldNotaE.getText());
+                            birthD = new Date(birthDStr);
+                            System.out.println(birthD.toString());
+                            /*si alguno de estas comprobaciones falla, avisamos al 
+                            usuario y nos salimos del recorrido*/
+                        }catch(Exception e){
+                            VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
+                        LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
+                            return null;
+                        }
+                    }else{
                         VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
-                    LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
+                            LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
                         return null;
                     }
                 }else{
@@ -301,10 +320,12 @@ public class MainView extends javax.swing.JFrame {
                     return null;
                 }
             }else{
+                //TODO 
                 VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
                     LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
                 return null;
             }
+                
         }catch(Exception e){
             VIEW_E.msgError(LANG_MAN.getMsg(LanguageManagerConstants.NOTIFICATIONS, 
                     LanguageManagerConstants.ID_NOTIFICATIONS_MSG_ERROR_NOT_VALID_INPUT));
@@ -688,32 +709,32 @@ btnUpdate.addActionListener(new java.awt.event.ActionListener() {
                 busqueda*/
                 switch(jComboBox2.getSelectedIndex()){
                     case 0://matricula
-                    if ((alu.getNMatricula()+"").contains(filText)) {
+                    if ((alu.getEnrollment()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
                     case 1://nombre
-                    if (alu.getNombre().contains(filText)) {
+                    if (alu.getName().contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
                     case 2://nota1
-                    if ((alu.getNot1Ev()+"").contains(filText)) {
+                    if ((alu.getMark1Ev()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
                     case 3://nota2
-                    if ((alu.getNot2Ev()+"").contains(filText)) {
+                    if ((alu.getMark2Ev()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
                     case 4://notaF
-                    if ((alu.getNotaFinal()+"").contains(filText)) {
+                    if ((alu.getMarkFinal()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
                     case 5://notaE
-                    if ((alu.getNotaExtra()+"").contains(filText)) {
+                    if ((alu.getMarkExtra()+"").contains(filText)) {
                         filteredArray.add(alu);
                     }
                     break;
