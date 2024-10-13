@@ -30,7 +30,6 @@ public class MainView extends javax.swing.JFrame {
             traducir comentarios
             corregir errores de nombres de variables
             getUserAlumn()-> EXPLICAR AL USUARIO QUE ESTÁ INTRODUCIENDO MAL
-        
     */
     
     //atribujos de lenguaje
