@@ -1,7 +1,9 @@
 <h1>DataAccessPractice</h1>
-
+<br>
 <h2>BRANCH SCHEME</h2>
-Main -> (default branch) this branch will be empty
-Unit1_File
-Unit2_XML
-Unit3_DataBases
+<ul>
+  <li>Main -> (default branch) this branch will be empty</li>
+  <li>Unit1_File</li>
+  <li>Unit2_XML</li>
+  <li>Unit3_DataBases</li>
+</ul>
