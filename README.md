@@ -24,3 +24,11 @@
   <li>Really simple grafic interface using Swing. doesn't have Main JFrame Form</li>
   <li>I have keept it simple.</li>
 </ul>
+
+<h3>XMLEx3XpathAccDatVeronicaSanchez</h3>
+<ul>
+  <li>Netbeans proyect</li>
+  <li>Some xPath queries from Java</li>
+  <li>No grafic interface, just souts</li>
+  <li>I have keept it simple.</li>
+</ul>
