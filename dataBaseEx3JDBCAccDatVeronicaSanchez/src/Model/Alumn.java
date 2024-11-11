@@ -1,8 +1,5 @@
 package Model;
 
-
-import java.util.Date;
-
 /**
  *
  * @author veron
@@ -23,8 +20,7 @@ public class Alumn {
         return "Alumn{" + "enrollment=" + enrollment + ", name=" + name + ", mark1Ev=" + mark1Ev + ", mark2Ev=" + mark2Ev + '}';
     }
     
-    public Alumn (int enrollment, String name, float mark1Ev, float mark2Ev, 
-        float markFinal, float markExtra, Date birthD){
+    public Alumn (int enrollment, String name, float mark1Ev, float mark2Ev){
         this.enrollment = enrollment;
         this.name = name;
         this.mark1Ev = mark1Ev;
