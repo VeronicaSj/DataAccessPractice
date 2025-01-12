@@ -15,3 +15,13 @@
     <li>Unit8 -> group proyect, this branch doesn't exist </li>
   </ul>
 </ul>
+<h2>EXERCISES INFO</h2>
+<h3>ex1SpringBoot</h3>
+<ul>
+  <li>Visual Studio Code Project</li>
+  <li>Dependecies Spring Web, Thymeleaf, Spring Boot DevTools</li>
+  <li>USING SpringBoot AND Maven</li>
+  <li>SpringBoot 3.4.2 SNAPSHOT</li>
+  <li>Packaging Jar</li>
+  <li>Java 21</li>
+</ul>
