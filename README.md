@@ -7,26 +7,16 @@
     <li>Unit1_File</li>
     <li>Unit2_XML</li>
     <li>Unit3_DataBases</li>
-<<<<<<< HEAD
     <li>Unit4_PersistenceSpring</li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Unit5_SpringBoot
     <li>Unit5_SpringBoot</li>
     <li>Unit6 -> group proyect, this branch doesn't exist </li>
     <li>Unit7_Angular</li>
     <li>Unit7_React</li>
     <li>Unit8 -> group proyect, this branch doesn't exist </li>
-<<<<<<< HEAD
-=======
->>>>>>> Unit1_File
-  </ul>
-=======
-  </ul>
 </ul>
-<h2>EXERCISES INFO</h2>
-<<<<<<< HEAD
+
+<h2>EXERCISES INFO - UNIT 2 - XML</h2> 
+
 <h3>XMLEx1Lectura_XMLAccDatVeronicaSanchez</h3>
 <ul>
   <li>Netbeans proyect</li>
@@ -40,9 +30,10 @@
   <li>It's a xml node translator</li>
   <li>Really simple grafic interface using Swing. doesn't have Main JFrame Form</li>
   <li>I have keept it simple.</li>
->>>>>>> Unit2_XML
 </ul>
-=======
+
+<h2>EXERCISES INFO - UNIT 4 - PERSISTENCE</h2> 
+
 <h3>ex1Persistence</h3>
 <ul>
   <li>Visual Studio Code Project</li>
@@ -54,13 +45,12 @@
   <li>Simple app to practice JPA and data relationship</li>
   <li>relationships one to many and heritance</li>
 </ul>
->>>>>>> Unit4_PersistenceSpring
-=======
-  </ul>
-</ul>
-<h2>EXERCISES INFO</h2>
+
+<h2>EXERCISES INFO - UNIT 5 - SPRING BOOT</h2>
+
 <h3>ex1SpringBoot</h3>
 <ul>
+  <li>this is a meanless proyect to learn how to implement APIs REST</li>
   <li>Visual Studio Code Project</li>
   <li>Dependecies Spring Web, Thymeleaf, Spring Boot DevTools</li>
   <li>USING SpringBoot AND Maven</li>
@@ -68,4 +58,14 @@
   <li>Packaging Jar</li>
   <li>Java 21</li>
 </ul>
->>>>>>> Unit5_SpringBoot
+
+<h3>selfWeb</h3>
+<ul>
+  <li>This is a personal web made implementing APIs REST architecture</li>
+  <li>Visual Studio Code Project</li>
+  <li>Dependecies Spring Web, Thymeleaf, Spring Boot DevTools, JPA, MySQL Driver</li>
+  <li>USING SpringBoot AND Maven</li>
+  <li>SpringBoot 3.4.2 SNAPSHOT</li>
+  <li>Packaging Jar</li>
+  <li>Java 21</li>
+</ul>
