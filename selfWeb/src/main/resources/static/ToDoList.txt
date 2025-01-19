@@ -1,0 +1,15 @@
+************************************************************************
+*************   To Do List   *******************************************
+************************************************************************
+
+-Just one header and footer for all pages but index
+-Easy editable content using any database or other technology
+-Translatable pages choosing the lenguage at the index
+
+************************************************************************
+
+for the header:
+- Make it cool when the browser resizes
+- Make it cool when the for almost every navegator size
+- make a gradient from transparent to white at de rigth 
+	border. Make text disappear slowly when it doesn't fit
