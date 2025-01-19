@@ -22,6 +22,7 @@
   </ul>
 </ul>
 <h2>EXERCISES INFO</h2>
+<<<<<<< HEAD
 <h3>XMLEx1Lectura_XMLAccDatVeronicaSanchez</h3>
 <ul>
   <li>Netbeans proyect</li>
@@ -37,3 +38,16 @@
   <li>I have keept it simple.</li>
 >>>>>>> Unit2_XML
 </ul>
+=======
+<h3>ex1Persistence</h3>
+<ul>
+  <li>Visual Studio Code Project</li>
+  <li>Dependecies JPA, MySQL Driver</li>
+  <li>USING SpringBoot AND Maven</li>
+  <li>SpringBoot 3.4.0 SNAPSHOT</li>
+  <li>Packaging Jar</li>
+  <li>Java 21</li>
+  <li>Simple app to practice JPA and data relationship</li>
+  <li>relationships one to many and heritance</li>
+</ul>
+>>>>>>> Unit4_PersistenceSpring
