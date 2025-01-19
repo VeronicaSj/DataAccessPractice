@@ -1,0 +1,43 @@
+footer {
+	background-image: linear-gradient(135deg, #FFCB70, #C751C0, #4158D0);
+	margin-right: 0;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	width: 100%;
+	
+}
+
+nav:after {
+  display: table;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+
+
+.footerLinksContainer {
+	display: flex;
+	padding: 3%;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footerLink {
+	padding: 1%;
+	text-align: center;
+	font-size: 150%;
+	color: #474747;
+	white-space: nowrap;
+}
+
+.footerLink:hover {
+	padding: 1%;
+	text-align: center;
+	font-size: 150%;
+	color: #474747;
+	background-color: #E4E4E4;
+	white-space: nowrap;
+}

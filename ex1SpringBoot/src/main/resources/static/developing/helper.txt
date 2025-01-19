@@ -1,0 +1,64 @@
+************************************************************************
+*************   HELPER   ***********************************************
+************************************************************************
+
+INSPIRATION:
+
+https://veronicasanchezjusticiablog.wordpress.com/
+https://www.serdeagua.com/
+
+************************************************************************
+
+HTML PAGE NAMES:
+
+index
+aboutMe
+experience
+skills
+contact
+blog
+
+************************************************************************
+
+SPANISH PAGE NAMES:
+
+Sobre mi
+Experiencia
+Habilidades
+Contacto
+Blog
+*GitHub
+*Linkedin
+
+************************************************************************
+
+ENGLISH PAGE NAMES:
+
+About Me
+Experience
+Skills
+Contact
+Blog
+*GitHub
+*Linkedin
+
+************************************************************************
+
+Lorem ipsum:
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+mollit anim id est laborum.
+
+************************************************************************
+
+<!--comentario-->
+
+************************************************************************
+
+
+

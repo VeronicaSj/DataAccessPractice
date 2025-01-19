@@ -1,0 +1,49 @@
+<html lang="en" xmlns="http://www.thymeleaf.org">
+	<head>
+		<meta charset ="UTF-8"/>
+		<title>Verónica Sánchez Justicia</title>
+		<link rel="icon" type="image/png" href="./favicon.png">
+		
+		<link href="css/styles.css" rel="stylesheet" type="text/css">
+		<link th:replace="../fragments/navigation :: headerCss">
+		<link th:replace="../fragments/navigation :: footerCss">
+	</head>
+	
+	<body>
+		<header th:replace="../fragments/navigation :: header"></header>
+		<div class="contAbMe">
+			<h1>Sobre mi</h1>
+			<img src="resources/selfie.jpeg" alt="Selfie" 
+			style="max-height:40%; max-width:40%; height:auto;
+				width:auto; display: block;
+				margin-left: auto;
+				margin-right: auto;">
+			<p>Soy Estudiante de Formación Profesional de Desarrollo de 
+			Aplicaciones Multiplataforma con experiencia laboral en 
+			Administracion de Sistemas. Actualmente me encuentro en 
+			búsqueda activa de empleo.</p>
+			
+			<p>Estoy especialmente interesada en seguir aprendiendo sobre 
+			Desarrollo de Software y Administración de Sistemas. Mis 
+			especialidades son la programación Java, desarrollo Android 
+			y gestión de bases de datos.</p>
+			
+			<p>Los idiomas en los que me puedo comunicar fluidamente son el 
+			español y el inglés, aunque estoy aprendiendo nuevos idiomas 
+			como la lengua de signos española y el alemán.</p>
+
+			<p>Soy una persona especialmente creativa pudiendo aplicar la 
+			creatividad a la resolución de problemas. También me interesa 
+			estar en contacto con otras personas ya sean compañeros de 
+			trabajo o clientes. Soy una persona muy asertiva y paciente, con
+			 alta tolerancia a la frustración.</p>
+			 
+			<p>Dedico mi tiempo libre a dibujar, teatro, pasear, deporte y 
+			a seguir aprendiendo y desarrollando aplicaciones y juegos 
+			especialmente diseñadas para mi.</p>
+
+		</div>
+		
+		<footer th:replace="../fragments/navigation :: footer"></footer>
+	</body>
+</html>
