@@ -13,6 +13,7 @@
     <li>Unit7_Angular</li>
     <li>Unit7_React</li>
     <li>Unit8 -> group proyect, this branch doesn't exist </li>
+  </ul>
 </ul>
 
 <h2>EXERCISES INFO - UNIT 2 - XML</h2> 

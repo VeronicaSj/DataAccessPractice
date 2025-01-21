@@ -6,12 +6,15 @@ import java.util.Date;
 import org.springframework.lang.NonNull;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
 @Entity
 public class Post {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NonNull
@@ -21,17 +24,15 @@ public class Post {
     @Lob
     private String content;
 
-    @NonNull
     private Date lastUpdate;
     
     public Post() {
     }
 
-    public Post(int id, String title, String content, Date lastUpdate) {
-        this.id = id;
+    public Post(String title, String content) {
         this.title = title;
         this.content = content;
-        this.lastUpdate = lastUpdate;
+        this.lastUpdate = new Date ();
     }
 
     public int getId() {

@@ -25,32 +25,41 @@
 					<div class="icons">
 
 						<div class="iconSet">
-							<img src="resources/gmail.png" alt="Selfie" >
-							<img src="resources/whatsapp.png" alt="Selfie" >
+							<a href="mailto:veronicasanchezjusticiainfor@gmail.com">
+								<img src="resources/gmail.png" alt="Selfie" >
+							</a>
+							<a href="https://wa.me/+34644048205?text=Hola, he visto tu pagina web y me gustaria ...">
+								<img src="resources/whatsapp.png" alt="Selfie" >
+							</a>
 						</div>
 						<div class="iconSet">
-							<img src="resources/GitHub.png" alt="Selfie" >
-							<img src="resources/linkedin.png" alt="Selfie" >
+							<a href="https://github.com/VeronicaSj" 
+								target="_blank">
+								<img src="resources/GitHub.png" alt="Selfie" >
+							</a>
+							<a href="https://www.linkedin.com/in/ver%C3%B3nica-s%C3%A1nchez-justicia-825a7421a/">
+								<img src="resources/linkedin.png" alt="Selfie" >
+							</a>
 						</div>
 					</div>
 				</div>
 				<div class="contactForm">
-					<form >
+					<form action="#" th:action="@{/contactPost}"  method="post">
 						<h3>Formulario de contacto: </h3>
 						<div class="formPart">
 							<label>Email: </label> <br>
-							<input>
+							<input id="email" name="email">
 						</div>
 						<div class="formPart">
 							<label>Tema: </label><br>
-							<input>
+							<input id="subject" name="subject">
 						</div>
 						<div class="formPart">
 							<label>Mensaje: </label><br>
-							<textarea></textarea>
+							<textarea id="msg" name="msg"></textarea>
 						</div>
 						<p>Todos los campos son requeridos</p>
-						<button>Enviar</button>
+						<button type="submit">Enviar</button>
 					</form>
 				</div>
 			</div>
