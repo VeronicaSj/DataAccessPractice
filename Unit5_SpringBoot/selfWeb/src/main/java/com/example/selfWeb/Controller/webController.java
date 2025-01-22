@@ -20,15 +20,4 @@ public class webController {
     public String aboutMe( Model model ) {
         return "aboutMe";
     }
-
-    @GetMapping("/experience")
-    public String experience( Model model ) {
-        return "experience";
-    }
-
-    @GetMapping("/skills")
-    public String skills( Model model ) {
-        return "skills";
-    }
-
 } 
