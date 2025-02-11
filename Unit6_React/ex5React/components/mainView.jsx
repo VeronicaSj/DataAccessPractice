@@ -11,17 +11,22 @@ function MainView() {
 
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState(false);
-  const [weatherCard, setWeatherCard] = useState(<></>);
+  const [weatherCard, setWeatherCard] = useState(null);
 
   function onSubmit() {
-    console.log('onSubmit');
-    setLoading(true);
+    setLoading(true)
+    console.log('setLoading(true)')
     setWeatherCard(<ConsultWeather 
                         city={city} 
                         renderData={(weather) => <WeatherCard weather={weather}/>}
                         ></ConsultWeather>
         );
-    setLoading(false);
+    
+  }
+
+  if(weatherCard != null && loading){
+    setLoading(false)
+    console.log('setLoading(false)')
   }
 
   return (
@@ -29,7 +34,6 @@ function MainView() {
       <Container sx={{ mt: 2 }} >
 
             <Typography variant="h3" component="h1" align="center" gutterBottom> </Typography>
-
             <Box sx={{ display: "grid" , gap: 2 }} component="form">
 
                 <TextField 
@@ -39,14 +43,13 @@ function MainView() {
 
                 <Button 
                     variant="contained" 
-                    loading={loading} 
+                    loading={loading}
                     loadingIndicator="Cargando..."
                     onClick={onSubmit}> 
                   Buscar 
                 </Button>
             </Box>
             {weatherCard}
-            
         </Container>
     </>
   )

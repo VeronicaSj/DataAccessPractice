@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 function WeatherCard( {weather}) {
+    console.log(weather)
     
     return (<Box sx={{mt:2,display:"grid",gap:2,textAlign:"center"}}>
         <Typography variant='h4' component='h2'>
