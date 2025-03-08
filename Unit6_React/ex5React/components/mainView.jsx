@@ -21,7 +21,6 @@ function MainView() {
                         renderData={(weather) => <WeatherCard weather={weather}/>}
                         ></ConsultWeather>
         );
-    
   }
 
   if(weatherCard != null && loading){
