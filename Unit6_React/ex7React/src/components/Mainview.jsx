@@ -1,11 +1,8 @@
-import { Box, Container, Grid2, TextField, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Container, Divider, Grid2, Typography } from '@mui/material';
 import { useState } from 'react'
 import Button from '@mui/material/Button';
 import Tablero from './Tablero';
 import Info from './info';
-import { RestartAlt } from '@mui/icons-material';
-
 
 function MainView() {
 
@@ -14,16 +11,11 @@ function MainView() {
   const [tie, settie] = useState(false);
   
   function changeTurno(){
-    console.log('changeTurno')
-    console.log('Turno'+turno)
     if(turno=='X'){
       setturno('O');
-      console.log('case x changed to '+turno)
     }else {
       setturno('X');
-      console.log('case O changed to'+turno)
     }
-    console.log('Turno'+turno)
   }
 
   function RestartGame(){
@@ -33,19 +25,31 @@ function MainView() {
   }
 
   return (
-    <Container>
-      <Typography align='center' variant="h1" component="h2">TRES EN RAYA</Typography>
-      <Info turno={turno} winner={winner} tie={tie}></Info>
-      <Tablero 
-        turno={turno} 
-        changeTurno={changeTurno}
-        winner={winner}
-        setwinner={setwinner}
-        tie={tie}
-        settie={settie}
-        />
-      <Button variant="contained" onClick={()=>RestartGame()} disabled={winner==false && tie==false}>Restart game</Button>
-    </Container>
+    <Grid2 container spacing={2} columns={1} alignItems={'center'} justifyContent={'center'}>
+      <Grid2 size={1}>
+        <Typography align='center' variant="h1" component="h2">TRES EN RAYA</Typography>
+      </Grid2>
+      <Grid2 size={1}>
+        <Info turno={turno} winner={winner} tie={tie}></Info>
+      </Grid2>
+      <Grid2 size={1}>
+        <Tablero 
+          turno={turno} 
+          changeTurno={changeTurno}
+          winner={winner}
+          setwinner={setwinner}
+          tie={tie}
+          settie={settie}
+          />
+      </Grid2>
+      <Grid2 size={1} alignContent={'center'} alignItems={'center'} justifyContent={'center'}>
+        <Button variant="contained" align='center'
+          onClick={()=>RestartGame()} 
+          disabled={winner==false && tie==false}>
+            Restart game
+        </Button>
+      </Grid2>
+    </Grid2>
   )
 }
 

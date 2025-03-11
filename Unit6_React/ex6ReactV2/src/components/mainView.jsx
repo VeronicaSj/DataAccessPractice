@@ -1,5 +1,4 @@
-import { Box, Container, TextField, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Container, Grid2, TextField, Typography } from '@mui/material';
 import { useState } from 'react'
 import Button from '@mui/material/Button';
 import ApiRes from './apiRes';
@@ -17,24 +16,25 @@ function MainView() {
 
   return (
     <>
-        <Container sx={{ mt: 2 }} >
-            <Typography variant="h3" component="h1" align="center" gutterBottom> </Typography>
-            <div sx={{ display: "grid" , gap: 2 }} component="form">
-
-                <TextField 
-                    id='dogBreed' label="Dog Breed" variant="outlined" 
-                    required fullWidth size="small" 
-                    value={dogbreedinput} onChange={(e) => setdogbreedinput(e.target.value)}>
-                </TextField>
-
-                <Button 
-                    variant="contained" 
-                    onClick = {onSubmit}>
-                  Buscar 
-                </Button>
-            </div>
-            <ApiRes dogbreed={dogbreed}/>
-        </Container>
+      <Grid2 container spacing={2} columns={1} alignItems={'center'} justifyContent={'center'}>
+        <Grid2 size={1}>
+          <TextField 
+              id='dogBreed' label="Dog Breed" variant="outlined" 
+              required fullWidth size="small" 
+              value={dogbreedinput} onChange={(e) => setdogbreedinput(e.target.value)}>
+          </TextField>
+        </Grid2>
+        <Grid2 size={1}>
+          <Button 
+              variant="contained" 
+              onClick = {onSubmit}>
+            Buscar 
+          </Button>
+        </Grid2>
+        <Grid2 size={1}>
+          <ApiRes dogbreed={dogbreed}/>
+        </Grid2>
+      </Grid2>
     </>
   )
 }

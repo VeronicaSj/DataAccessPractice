@@ -1,4 +1,4 @@
-import { Box, Container, TextField, Typography } from '@mui/material';
+import { Grid2, Container, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useState } from 'react'
 import ConsultWeather from './weatherConsultant';
@@ -24,28 +24,26 @@ function MainView() {
   }
 
   return (
-    <>
-      <Container sx={{ mt: 2 }} >
-
-            <Typography variant="h3" component="h1" align="center" gutterBottom> </Typography>
-            <div sx={{ display: "grid" , gap: 2 }} component="form">
-
-                <TextField 
-                    id='city' label="Ciudad" variant="outlined" 
-                    required fullWidth size="small" value={city} 
-                    onChange={(e) => setCity(e.target.value)}></TextField>
-
-                <Button 
-                    variant="contained" 
-                    loading={loading}
-                    loadingIndicator="Cargando..."
-                    onClick={onSubmit}> 
-                  Buscar 
-                </Button>
-            </div>
+      <Grid2 container spacing={2} columns={1} alignItems={'center'} justifyContent={'center'}>
+        <Grid2 size={1}>
+          <TextField 
+              id='city' label="Ciudad" variant="outlined" 
+              required fullWidth size="small" value={city} 
+              onChange={(e) => setCity(e.target.value)}></TextField>
+        </Grid2>
+        <Grid2 size={1}>
+          <Button 
+              variant="contained" 
+              loading={loading}
+              loadingIndicator="Cargando..."
+              onClick={onSubmit}> 
+            Buscar 
+          </Button>
+        </Grid2>
+        <Grid2 size={1}>
             {weatherCard}
-        </Container>
-    </>
+        </Grid2>
+      </Grid2>
   )
 }
 

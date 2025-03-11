@@ -20,7 +20,7 @@ public class SelfWebApplication implements  CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//pruebas()
+		pruebas();
 	}
 
 
